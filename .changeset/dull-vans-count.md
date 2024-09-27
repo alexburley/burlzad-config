@@ -1,0 +1,5 @@
+---
+'@burlzad/config': patch
+---
+
+Initialize
