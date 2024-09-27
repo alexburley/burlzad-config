@@ -1,6 +1,6 @@
 {
   "name": "@burlzad/config",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "52782469+alexburley@users.noreply.github.com.",
   "description": "A zero dependency utility library to build configs",
   "keywords": [
