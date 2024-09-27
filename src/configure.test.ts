@@ -24,32 +24,29 @@ describe.each`
   ${NodeEnvironments.PRODUCTION}  | ${'someProdEnvVar'}
 `('Given environment is $env', ({ env, expectedEnvVar }) => {
   test(`returns ${expectedEnvVar} for the SOME_ENV_VAR key`, () => {
-    expect(
-      configure(
-        {
-          local: () => ({
-            SOME_ENV_VAR: 'someLocalEnvVar',
-          }),
-          dev: () => ({
-            SOME_ENV_VAR: 'someDevEnvVar',
-          }),
-          staging: () => ({
-            SOME_ENV_VAR: 'someStagingEnvVar',
-          }),
-          production: () => ({
-            SOME_ENV_VAR: 'someProdEnvVar',
-          }),
-          DEFAULT: (source = {}) => ({
-            SOME_ENV_VAR: source.SOME_ENV_VAR || 'default',
-          }),
-        },
-        {
-          env,
-        },
-      ),
-    ).toEqual({
-      SOME_ENV_VAR: expectedEnvVar,
-    });
+    const sut = configure(
+      {
+        local: () => ({
+          SOME_ENV_VAR: 'someLocalEnvVar',
+        }),
+        dev: () => ({
+          SOME_ENV_VAR: 'someDevEnvVar',
+        }),
+        staging: () => ({
+          SOME_ENV_VAR: 'someStagingEnvVar',
+        }),
+        production: () => ({
+          SOME_ENV_VAR: 'someProdEnvVar',
+        }),
+        DEFAULT: (source = {}) => ({
+          SOME_ENV_VAR: source.SOME_ENV_VAR || 'default',
+        }),
+      },
+      {
+        env,
+      },
+    );
+    expect(sut.SOME_ENV_VAR).toEqual(expectedEnvVar);
   });
 
   test('Should throw an InvalidEnvironmentError ', () => {

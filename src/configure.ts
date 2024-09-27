@@ -24,7 +24,7 @@ export const configure = <
 
   const resolver = validate(resolvers, env);
   const configuration = merge(resolvers.DEFAULT(source), resolver(source));
-  return verify(configuration);
+  return verify(configuration) as TConfig;
 };
 
 const validate = <TEnv extends string, TConfig extends BaseConfiguration>(
